@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vaughn Knight</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="icon" type="image/x-icon" href="Logos/portfolio-logo.png">
+    </head>
+    <style>
+        @font-face {
+            font-family: Dosis;
+            src: url(Fonts/Dosis/Dosis-Regular.ttf);
+        }
+        @font-face {
+            font-family: Dosis Medium;
+            src: url(Fonts/Dosis/Dosis-Medium.ttf);
+        }
+        @font-face {
+            font-family: Dosis Semi Bold;
+            src: url(Fonts/Dosis/Dosis-SemiBold.ttf);
+        }
+        @font-face {
+            font-family: Dosis Extra Bold;
+            src: url(Fonts/Dosis/Dosis-ExtraBold.ttf);
+        }
+        @keyframes cursor {
+            to {
+                border-left: 2px solid #242424;
+            }
+        }
+        @keyframes words {
+            0%,20% {
+                content: "Computer Science Student";
+            }
+            21%,40% {
+                content: "Leader";
+            }
+            41%,60% {
+                content: "Developer";
+            }
+            61%,80% {
+                content: "High Achiever";
+            }
+            81%,100% {
+                content: "Programmer";
+            }
+        }
+        @keyframes typing {
+            10%,15%,30%,50%,55%,70%,75%,90%,95% {
+                width: 0;
+            }
+            5%,20%,25%,40%,45%,60%,65%,80%,85% {
+                width: calc(100% + 8px);
+            }
+        }
+        @keyframes slide {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-1750px);
+            }
+        }
+        /*
+        @media screen and (max-width: 900px) {
+            .wrapper .carousel {
+                grid-auto-columns: calc((100% / 3) - 9px);
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .wrapper .carousel {
+                grid-auto-columns: 100%;
+            }
+        }
+        */
+        html {
+            scroll-behavior: smooth;
+            /*min-width: 75%;*/
+        }
+        body {
+            background-color: #242424;
+            font-family: Dosis Medium;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /*min-width: 1000px;*/
+        }
+        html, body {
+            min-width: 1000px;
+        }
+        .header {
+            background-color: #121212;
+            position: fixed;
+            overflow: hidden;
+            width: 100%;
+            top: 0;
+            left: 0;
+            height: 50px;
+            border-bottom: 1px solid #e5e5e5;
+            text-align: right;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none;
+        }
+        .logo {
+            top: 0;
+            left: 0;
+            height: 50px;
+            width: 50px;
+            background-color: white;
+            overflow: hidden;
+            text-align: center;
+            display: grid;
+            align-items: center;
+            font-size: 15px;
+            position: fixed;
+            font-family: Dosis Extra Bold;
+        }
+        .nav {
+            color: #e5e5e5;
+            font-size: 15px;
+            position: fixed;
+            margin-top: 16px;
+            font-family: Dosis;
+        }
+        .nav:hover {
+            color: #e5e5e5;
+            font-size: 15px;
+            position: fixed;
+            margin-top: 16px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        a {
+            text-decoration: none;
+            color: #121212;
+        }
+        .headshot {
+            height: 400px;
+            width: 400px;
+            border-radius: 15%;
+            margin-left: 75px;
+            margin-top: 100px;
+            /*border: 2.5px solid #e5e5e5;*/
+            box-shadow: 0px 0px 6px #e5e5e5;
+        }
+        .intro {
+            color: #e5e5e5;
+            font-size: 50px;
+            padding-bottom: 100px;
+        }
+        .title {
+            position: relative;
+        }
+        .title::before {
+            content: "Computer Science Student";
+            animation: words 20s infinite;
+        }
+        .title::after {
+            content: "";
+            position: absolute;
+            height: 110%;
+            width: calc(100% + 8px);
+            background-color: #242424;
+            border-left: 2px solid #e5e5e5;
+            right: -8px;
+            animation: cursor .8s infinite, typing 20s steps(14) infinite;
+        }
+        .aboutMe {
+            color: #e5e5e5;
+            padding-bottom: 50px;
+        }
+        .footer {
+            width: 100%;
+            height: 50px;
+            border-top: 1px solid #e5e5e5;
+            left: 0;
+            position: absolute;
+        }
+        .description {
+            width: 375px;
+            height: 375px;
+            background-color: #121212;
+            border-radius: 10%;
+            /*border: 2.5px solid #e5e5e5;*/
+            box-shadow: 0px 0px 6px #e5e5e5;
+            font-size: 23px;
+        }
+        .heading {
+            font-size: 60px;
+            margin-bottom: 10px;
+            padding-top: 75px;
+        }
+        .mySkills {
+            color: #e5e5e5;
+            padding-bottom: 50px;
+        }
+        .mySkills .description{
+            color: #e5e5e5;
+            font-size: 31px;
+        }
+        .myProjects {
+            color: #e5e5e5;
+            padding-bottom: 50px;
+        }
+        .myActivities {
+            color: #e5e5e5;
+            padding-bottom: 25px;
+        }
+        .skillLogos {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            font-size: 35px;
+            width: 50%;
+            row-gap: 25px;
+            padding-top: 20px;
+        }
+        .logos img{
+            height: 125px;
+            width: auto;
+        }
+        .logos:hover {
+            scale: 1.25;
+        }
+        .logos {
+            width: 125px;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none;
+        }
+        .logos p {
+            margin: 0px;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none;
+        }
+        /*
+        .myProjects div {
+            width: 375px;
+            height: 375px;
+            background-color: #121212;
+            border-radius: 10%;
+            border: 2.5px solid #e5e5e5;
+            font-size: 23px;
+        }
+        */
+        .myProjects img {
+            height: 375px;
+            width: auto;
+            border-radius: 9.5%;
+        }
+        /*
+        .generator {
+            background-image: url(Photos/2k-generator-cover.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        */
+        .myProjects img:hover {
+            opacity: 0.75;
+        }
+        .mode {
+            position: fixed;
+            overflow: hidden;
+            border-radius: 50%;
+            bottom: 20px;
+            right: 20px;
+            height: 50px;
+            width: 50px;
+            background-color: #121212;
+            box-shadow: 0px 0px 1px #e5e5e5;
+            cursor: pointer;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none;
+        }
+        .mode:hover {
+            scale: 1.10;
+        }
+        /*
+        .wrapper {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+        }
+        .wrapper .carousel {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: calc((100% / 3) -12px);
+            gap: 16px;
+            overflow: hidden;
+        }
+        .wrapper .arrow:first-child {
+            left: -22px;
+        }
+        .wrapper .arrow:last-child {
+            right: -22px;
+        }
+        .carousel .card {
+            list-style: none;
+            width: 375px;
+            height: 375px;
+            background-color: #121212;
+            border-radius: 10%;
+            box-shadow: 0px 0px 6px #e5e5e5;
+            font-size: 23px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        /*
+        .card {
+            width: 375px;
+            height: 375px;
+            background-color: #121212;
+            border-radius: 10%;
+            box-shadow: 0px 0px 6px #e5e5e5;
+            font-size: 23px;
+        }
+        /*
+        .card img {
+            width: auto;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10%;
+        }
+        .arrow {
+            height: 50px;
+            width: 50px;
+            background: #e5e5e5;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0.75;
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .arrow img {
+            width: 30px;
+            height: auto;
+            padding-top: 10px;
+        }
+        .carousel .card h2 {
+            font-size: 25px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        .carousel .card span {
+            font-size: 20px;
+        }
+        */
+        .activitySlide .card img {
+            height: 250px;
+            width: auto;
+            border-radius: 10%;
+            margin-top: 25px;
+        }
+        .activitySlide .card h2 {
+            font-size: 23px;
+            margin: 0;
+        }
+        .activitySlide .card span {
+            font-size: 20px;
+        }
+        .activitySlide {
+            display: grid;
+            grid-auto-flow: column;
+            animation: 10s slide infinite linear;
+
+        }
+        .activitySlide .card {
+            width: 350px;
+            height: 350px;
+            background-color: #121212;
+        }
+        .top-bottom-border {
+            box-shadow: 0px 0px 6px #e5e5e5;
+        }
+        .resume {
+            font-size: 20px;
+            background-color: #121212;
+            width: 200px;
+            height: 65px;
+            margin-left: 581px;
+            border-radius: 10px;
+            font-size: 25px;
+            text-align: center;
+            margin-top: -20px;
+            box-shadow: 0px 0px 6px #e5e5e5;
+        }
+        .resume p {
+            padding-top: 16px;
+        }
+    </style>
+    <body>
+        <div class="intro" id="intro">
+            <img class="headshot" id="headshot" src="Photos/Headshot.jpeg">
+            <p style="overflow: hidden; margin-top: -325px; margin-left: 550px; min-width: 500px">> Hello, I'm Vaughn Knight</p>
+            <p style="margin-top: -40px; margin-left: 581px; min-width: 1000px">a <span class="title" id="title"></span></p>
+            <div style="width: 200px">
+                <a style="color: #e5e5e5;" href="Photos/Vaughn_Knight_Resume.pdf" target="_blank" download="Vaughn_Knight_Resume">
+                    <div class="resume" id="resume" onmouseover="mouseOver()" onmouseleave="mouseLeave()">
+                        <p>Download Resume</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="aboutMe" id="aboutMe">
+            <center>
+                <p class="heading" id="heading">About Me</p>
+                <div style="width: 750px; border-radius: 5%; margin-top: -10px" class="description" id="description"><!--style="margin-left: -400px"-->
+                    <p style="padding: 0px; padding-top: 5px; font-size: 35px">
+                        I am a student working towards my bachelor's in Computer Science at Virginia Tech. 
+                        Throughout my studies, I have mainly focused on web/software development and machine 
+                        learning, having a good understanding of Java, Python, and HTML. I am also a proud member 
+                        of the Theta Iota Chapter of Alpha Phi Alpha Fraternity, Inc.® In my off time, I like to 
+                        play/watch basketball and listen to music.
+                    </p>
+                </div>
+                <!--
+                <div class="description" id="collage" style="margin-right: -400px; margin-top: -379px">
+                </div>
+                -->
+            </center>
+        </div>
+        <div class="mySkills" id="mySkills">
+            <center>
+                <p class="heading" id="heading">My Skills</p>
+                <div class="skillLogos">
+                    <div class="grid">
+                        <div class="logos">
+                            <img src="Logos/html.png">
+                            <p>HTML</p>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="logos" style="width: 150px">
+                            <img src="Logos/javascript.png">
+                            <p>JavaScript</p>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="logos">
+                            <img src="Logos/css.png">
+                            <p>CSS</p>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="logos">
+                            <img src="Logos/java.png">
+                            <p>Java</p>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="logos">
+                            <img src="Logos/python.png">
+                            <p>Python</p>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="logos">
+                            <img src="Logos/c.png">
+                            <p>C</p>
+                        </div>
+                    </div>
+                </div>
+            </center>
+        </div>
+        <div class="myProjects" id="myProjects">
+            <center>
+                <p style="padding-bottom: 15px" class="heading" id="heading">My Projects</p>
+                <div class="description" id="computerProjects">
+                    <a href="https://vaughnknight13.github.io/NBA2KBlacktopGenerator/" target="_blank">
+                        <img src="Photos/2k-generator-cover.png">
+                    </a>
+                </div>
+            </center>
+        </div>
+        <div class="myActivities" id="myActivities">
+            <center>
+                <p style="padding-bottom: 10px" class="heading" id="heading">Extracurriculars</p>
+                <div class="top-bottom-border" id="activityBorder">
+                    <div class="activitySlide" id="slide">
+                        <div class="card">
+                            <img src="Logos/theta-iota-logo.PNG">
+                            <h2>Alpha Phi Alpha Fraternity, Inc.</h2>
+                            <span style="font-size: 19px">Theta Iota Chapter - Corresponding Secretary</span>
+                        </div>
+                        <div class="card">
+                            <img src="Logos/ceed-logo.jpg">
+                            <h2 style="font-size: 18px">Center for the Enhancement <br>for Engineering Diversity</h2>
+                            <span>Peer Mentor</span>
+                        </div>
+                        <div class="card">
+                            <img src="Logos/colorstack-logo.jpg">
+                            <h2>ColorStack @ VT</h2>
+                            <span>Member</span>
+                        </div>
+                        <div class="card">
+                            <img src="Logos/nsbe-logo.PNG">
+                            <h2>National Society of Black Engineers</h2>
+                            <span>2023-24 Undergraduate Council</span>
+                        </div>
+                        <div class="card">
+                            <img src="Logos/ujima-logo.png">
+                            <h2>Ujima LLC</h2>
+                            <span>Member/Peer Mentor</span>
+                        </div>
+                        <div class="card">
+                            <img src="Logos/theta-iota-logo.PNG">
+                            <h2>Alpha Phi Alpha Fraternity, Inc.</h2>
+                            <span style="font-size: 19px">Theta Iota Chapter - Corresponding Secretary</span>
+                        </div>
+                        <div class="card">
+                            <img src="Logos/ceed-logo.jpg">
+                            <h2 style="font-size: 18px">Center for the Enhancement <br>for Engineering Diversity</h2>
+                            <span>Peer Mentor</span>
+                        </div>
+                        <div class="card">
+                            <img src="Logos/colorstack-logo.jpg">
+                            <h2>ColorStack @ VT</h2>
+                            <span>Member</span>
+                        </div>
+                        <div class="card">
+                            <img src="Logos/nsbe-logo.PNG">
+                            <h2>National Society of Black Engineers</h2>
+                            <span>2023-24 Undergraduate Council</span>
+                        </div>
+                        <div class="card">
+                            <img src="Logos/ujima-logo.png">
+                            <h2>Ujima LLC</h2>
+                            <span>Member/Peer Mentor</span>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="wrapper">
+                    <div class="arrow" style="left: 0.5%">
+                        <img src="Photos/left-arrow-black.png">
+                    </div>
+                    <ul class="carousel">
+                        <li class="card">
+                            <img src="Photos/theta-iota-logo.PNG">
+                            <h2>Alpha Phi Alpha Fraternity, Inc.</h2>
+                            <span>Theta Iota Chapter - Recording Secretary</span>
+                        </li>
+                        <li class="card">
+                            <img src="Photos/nsbe-logo.PNG">
+                            <h2>National Society of Black Engineers</h2>
+                            <span>2023-24 Undergraduate Council</span>
+                        </li>
+                        <li class="card">
+                            <img src="Photos/colorstack-logo.jpg">
+                            <h2>ColorStack @ VT</h2>
+                            <span>Member</span>
+                        </li>
+                        <li class="card">
+                            <img src="Photos/ujima-logo.png">
+                            <h2>Ujima</h2>
+                            <span>Member</span>
+                        </li>
+                    </ul>
+                    <div class="arrow" style="right: 0.5%">
+                        <img src="Photos/right-arrow-black.png">
+                    </div>
+                </div>
+                -->
+                <!--
+                <div class="description" id="activities">
+                    <center>
+                        <img src="Photos/theta-iota-logo.PNG" style="width: 300px; height: auto; margin-top: -10px">
+                        <div style="margin-top: -45px">
+                            <p class="activityHeader" id="activityHeader">Alpha Phi Alpha Fraternity Inc.</p>
+                            <p class="activityCaption" id="activityCaption">Theta Iota Chapter - Recording Secretary</p>
+                        </div>
+                    </center>
+                </div>
+                -->
+            </center>
+        </div>
+        <!--<div class="footer" id="footer"></div>-->
+        <div class="header" id="header">
+            <a href="#top">
+                <div class="logo" id="logo">VK</div>
+            </a>
+            <a href="#aboutMe">
+                <p class="nav" id="about" style="left: 70px">ABOUT</p>
+            </a>
+            <a href="#mySkills">
+                <p class="nav" id="skills" style="left: 130px">SKILLS</p>
+            </a>
+            <a href="#myProjects">
+                <p class="nav" id="projects" style="left: 190px">PROJECTS</p>
+            </a>
+            <a href="#myActivities">
+                <p class="nav" id="extracurricular" style="left: 275px">EXTRACURRICULARS</p>
+            </a>
+            <a href="https://github.com/vaughnknight13" target="_blank">
+            <img class="nav" id="github" src="Logos/github-white.png" style="right: 120px; height: 35px; width: auto; cursor: pointer; margin-top: 7px">
+            </a>
+            <a href="https://www.linkedin.com/in/vaughn-knight/" target="_blank">
+                <img class="nav" id="linkedIn" src="Logos/linkedin-white.png" style="right: 70px; height: 35px; width: 35px; cursor: pointer; margin-top: 7px">
+            </a>
+            <a href="mailto:vaughnknight13@vt.edu" target="_blank">
+                <img class="nav" id="email" src="Logos/email-white.png" style="right: 20px; height: 35px; width: auto; cursor: pointer; margin-top: 7px">
+            </a>
+            <!--<img class="nav" id="modeSymbol" src="Photos/dark-mode.png" style="right: 60px; height: 20px; width: 20px; cursor: default">-->
+            <!--<p class="nav" id="mode" style="right: 20px" onclick="toggleMode()">MODE</p>-->
+        </div>
+        <div class="mode" id="mode" onclick="toggleMode()">
+            <center>
+                <img id="modeSymbol" src="Logos/dark-mode.png" style="width: 25px; height: 25px; padding-top: 12px">
+            </center>
+        </div>
+        <script src="portfolio.js" defer></script>
+    </body>
+</html>
